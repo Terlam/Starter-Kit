@@ -1,0 +1,340 @@
+---
+globs: src/app/**/*.tsx,src/app/**/*.ts,next.config.ts
+---
+
+# Next.js 15 Patterns and Best Practices
+
+## App Router Structure
+
+### Page Components
+```tsx
+// src/app/page.tsx - Home page
+export default function HomePage() {
+  return (
+    <main>
+      <h1>Welcome to Starter Kit</h1>
+    </main>
+  );
+}
+
+// src/app/dashboard/page.tsx - Dashboard page
+export default function DashboardPage() {
+  return (
+    <div>
+      <h1>Dashboard</h1>
+    </div>
+  );
+}
+```
+
+### Layout Components
+```tsx
+// src/app/layout.tsx - Root layout
+import type { Metadata } from 'next';
+import './globals.css';
+
+export const metadata: Metadata = {
+  title: 'Starter Kit',
+  description: 'Next.js 15 Starter Kit with Firebase and AI',
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+### API Routes
+```tsx
+// src/app/api/endpoint/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function GET(req: NextRequest) {
+  try {
+    // Handle GET request
+    return NextResponse.json({ data: 'success' });
+  } catch (error) {
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}
+
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json();
+    // Handle POST request
+    return NextResponse.json({ data: body }, { status: 201 });
+  } catch (error) {
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}
+```
+
+## Client vs Server Components
+
+### Server Components (Default)
+```tsx
+// Server component - can use async/await
+export default async function ServerComponent() {
+  const data = await fetch('https://api.example.com/data');
+  const json = await data.json();
+  
+  return <div>{json.title}</div>;
+}
+```
+
+### Client Components
+```tsx
+'use client'; // Required for client-side features
+
+import { useState, useEffect } from 'react';
+
+export default function ClientComponent() {
+  const [state, setState] = useState('');
+  
+  useEffect(() => {
+    // Client-side logic
+  }, []);
+  
+  return <div>{state}</div>;
+}
+```
+
+## Data Fetching Patterns
+
+### Server-Side Data Fetching
+```tsx
+// Fetch data in server components
+export default async function Page() {
+  const data = await fetch('https://api.example.com/data', {
+    cache: 'no-store', // or 'force-cache', 'revalidate'
+  });
+  
+  return <div>{data.title}</div>;
+}
+```
+
+### Client-Side Data Fetching
+```tsx
+'use client';
+
+import { useState, useEffect } from 'react';
+
+export default function ClientPage() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch('/api/data');
+        const json = await response.json();
+        setData(json);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    fetchData();
+  }, []);
+  
+  if (loading) return <div>Loading...</div>;
+  
+  return <div>{data?.title}</div>;
+}
+```
+
+## Navigation Patterns
+
+### Link Component
+```tsx
+import Link from 'next/link';
+
+// Internal navigation
+<Link href="/dashboard" className="text-blue-500 hover:text-blue-700">
+  Go to Dashboard
+</Link>
+
+// External links
+<Link href="https://example.com" target="_blank" rel="noopener noreferrer">
+  External Link
+</Link>
+```
+
+### Router Navigation
+```tsx
+'use client';
+
+import { useRouter } from 'next/navigation';
+
+export default function NavigationComponent() {
+  const router = useRouter();
+  
+  const handleNavigation = () => {
+    router.push('/dashboard');
+    // or router.replace('/dashboard') for replace
+    // or router.back() for back navigation
+  };
+  
+  return <button onClick={handleNavigation}>Navigate</button>;
+}
+```
+
+## Image Optimization
+
+### Next.js Image Component
+```tsx
+import Image from 'next/image';
+
+export default function ImageComponent() {
+  return (
+    <Image
+      src="/images/hero.jpg"
+      alt="Hero image"
+      width={1920}
+      height={1080}
+      priority // For above-the-fold images
+      placeholder="blur"
+      blurDataURL="data:image/jpeg;base64,..."
+    />
+  );
+}
+```
+
+## Metadata and SEO
+
+### Page Metadata
+```tsx
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Page Title',
+  description: 'Page description',
+  keywords: ['keyword1', 'keyword2'],
+  openGraph: {
+    title: 'Page Title',
+    description: 'Page description',
+    images: ['/images/og-image.jpg'],
+  },
+};
+```
+
+### Dynamic Metadata
+```tsx
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const data = await fetch(`https://api.example.com/posts/${params.id}`);
+  const post = await data.json();
+  
+  return {
+    title: post.title,
+    description: post.excerpt,
+  };
+}
+```
+
+## Environment Variables
+
+### Environment Variable Usage
+```tsx
+// Server-side (API routes, server components)
+const apiKey = process.env.API_KEY;
+
+// Client-side (must be prefixed with NEXT_PUBLIC_)
+const publicApiKey = process.env.NEXT_PUBLIC_API_KEY;
+```
+
+## Configuration
+
+### Next.js Config
+```typescript
+// next.config.ts
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  // Enable static exports if needed
+  output: 'standalone',
+  
+  // Image optimization
+  images: {
+    domains: ['example.com'],
+    formats: ['image/webp', 'image/avif'],
+  },
+  
+  // Security headers
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+        ],
+      },
+    ];
+  },
+};
+
+export default nextConfig;
+```
+
+## Error Handling
+
+### Error Boundaries
+```tsx
+'use client';
+
+import { useEffect } from 'react';
+
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
+  
+  return (
+    <div>
+      <h2>Something went wrong!</h2>
+      <button onClick={() => reset()}>Try again</button>
+    </div>
+  );
+}
+```
+
+### Not Found Pages
+```tsx
+// src/app/not-found.tsx
+export default function NotFound() {
+  return (
+    <div>
+      <h2>Not Found</h2>
+      <p>Could not find requested resource</p>
+    </div>
+  );
+}
+```
+
+## Best Practices
+
+1. **Use App Router**: Leverage the new App Router for better performance
+2. **Server Components**: Prefer server components when possible
+3. **Client Components**: Only use 'use client' when necessary
+4. **Image Optimization**: Always use Next.js Image component
+5. **Metadata**: Set proper metadata for SEO
+6. **Error Handling**: Implement proper error boundaries
+7. **Performance**: Use dynamic imports for code splitting
+8. **Security**: Implement proper security headers

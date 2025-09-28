@@ -7,7 +7,7 @@ import { User, Download, Settings, Users } from 'lucide-react';
 const activities = [
   {
     action: 'User login',
-    user: 'john@example.com',
+    user: 'kwame.asante@afrotech.com',
     time: '2 min ago',
     icon: User,
     color: 'text-blue-500',
@@ -28,10 +28,24 @@ const activities = [
   },
   {
     action: 'New user registered',
-    user: 'sarah@example.com',
+    user: 'amina.diallo@dakar.dev',
     time: '15 min ago',
     icon: Users,
     color: 'text-purple-500',
+  },
+  {
+    action: 'Profile updated',
+    user: 'kemi.adebayo@lagos.tech',
+    time: '20 min ago',
+    icon: User,
+    color: 'text-indigo-500',
+  },
+  {
+    action: 'Project created',
+    user: 'malcolm.x@chicago.edu',
+    time: '25 min ago',
+    icon: Settings,
+    color: 'text-teal-500',
   },
 ];
 

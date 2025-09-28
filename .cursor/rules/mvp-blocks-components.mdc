@@ -1,0 +1,140 @@
+---
+globs: src/Components/mvp-blocks/*.tsx,src/Components/mvpblocks/*.tsx
+---
+
+# MVP Blocks Components Guidelines
+
+## Starter Kit Extensibility
+
+This is a **starter kit designed for extension**. Always consider adding new MVP blocks and components to enhance functionality.
+
+### MVP Blocks Documentation
+- **Official Documentation**: [https://blocks.mvp-subha.me/](https://blocks.mvp-subha.me/)
+- **Component Library**: [https://blocks.mvp-subha.me/docs/](https://blocks.mvp-subha.me/docs/)
+- **Adding New Blocks**: [https://blocks.mvp-subha.me/docs/guide/add-a-block](https://blocks.mvp-subha.me/docs/guide/add-a-block)
+- **CLI Installation**: `npx mvpblocks add [component-name]`
+
+### Available MVP Blocks
+
+### Authentication Components
+- **Login Component** ([mvp-blocks/login.tsx](mdc:src/Components/mvp-blocks/login.tsx))
+  - Google OAuth integration
+  - Dark theme design (`bg-[#0D1117]`)
+  - Responsive layout
+  - Error handling with user feedback
+
+- **Signup Component** ([mvp-blocks/signup.tsx](mdc:src/Components/mvp-blocks/signup.tsx))
+  - Google OAuth signup flow
+  - Consistent styling with login
+  - Minimal user friction design
+
+### Hero Section Components
+- **Spline Hero** ([mvp-blocks/spline-hero.tsx](mdc:src/Components/mvp-blocks/spline-hero.tsx))
+  - Framer Motion animations
+  - Responsive design
+  - Call-to-action buttons
+  - Background gradients and effects
+
+### Custom Components
+- **Flip Card** ([quiz/FlipCard.tsx](mdc:src/Components/quiz/FlipCard.tsx))
+  - 3D flip animations
+  - Interactive hover effects
+  - Customizable content
+
+## Usage Patterns
+
+### Import MVP Blocks
+```tsx
+import LoginPage from '@/Components/mvp-blocks/login';
+import SignupPage from '@/Components/mvp-blocks/signup';
+import SplineHero from '@/Components/mvp-blocks/spline-hero';
+```
+
+### Component Structure
+- Always use `'use client'` directive for client-side components
+- Follow the dark theme color scheme:
+  - Background: `#0D1117`
+  - Text: `#FFFFFF`
+  - Accent: `#2B6CB0`
+  - Muted text: `#A0AEC0`
+  - Success: `#38A169`
+
+### Authentication Integration
+- Use Firebase authentication from [api/google/google.ts](mdc:src/app/api/google/google.ts)
+- Handle authentication state properly
+- Provide meaningful error messages
+- Implement loading states
+
+### Styling Guidelines
+- Use Tailwind CSS utilities
+- Implement responsive design with `md:`, `lg:` breakpoints
+- Use CSS variables for theming when possible
+- Follow the established color palette
+
+## Adding New MVP Blocks
+
+### Using the CLI
+```bash
+# Add a new component from the MVP Blocks library
+npx mvpblocks add [component-name]
+
+# Examples:
+npx mvpblocks add flip-card
+npx mvpblocks add pricing-card
+npx mvpblocks add testimonial
+```
+
+### Manual Installation
+1. **Browse Components**: Visit [https://blocks.mvp-subha.me/docs/](https://blocks.mvp-subha.me/docs/)
+2. **Copy Component Code**: Use the provided code snippets
+3. **Place in Directory**: Save to `src/Components/mvp-blocks/`
+4. **Install Dependencies**: Add any required packages
+5. **Customize Styling**: Adapt to project theme
+6. **Update Imports**: Add to component exports
+
+### Creating Custom MVP Blocks
+
+When creating new MVP blocks:
+1. **Place in Directory**: `src/Components/mvp-blocks/`
+2. **Use Consistent Naming**: `component-name.tsx`
+3. **Follow Established Patterns**: Match existing component structure
+4. **Include TypeScript Types**: Define proper interfaces
+5. **Implement Error Handling**: Add proper error states
+6. **Use Dark Theme**: Follow the established color scheme
+7. **Make Responsive**: Ensure mobile compatibility
+8. **Add Documentation**: Include usage examples
+
+### Component Categories to Consider Adding
+
+Based on [MVP Blocks documentation](https://blocks.mvp-subha.me/docs/):
+
+#### Foundation Components
+- **Colors & Theming**: [https://blocks.mvp-subha.me/docs/foundation/colors](https://blocks.mvp-subha.me/docs/foundation/colors)
+- **Buttons**: [https://blocks.mvp-subha.me/docs/components/basic/buttons](https://blocks.mvp-subha.me/docs/components/basic/buttons)
+- **Loaders**: [https://blocks.mvp-subha.me/docs/components/basic/loaders](https://blocks.mvp-subha.me/docs/components/basic/loaders)
+
+#### Layout Components
+- **Headers**: [https://blocks.mvp-subha.me/docs/components/required/headers](https://blocks.mvp-subha.me/docs/components/required/headers)
+- **Footers**: [https://blocks.mvp-subha.me/docs/components/required/footers](https://blocks.mvp-subha.me/docs/components/required/footers)
+
+#### Content Components
+- **Cards**: [https://blocks.mvp-subha.me/docs/cards/](https://blocks.mvp-subha.me/docs/cards/)
+- **Forms**: [https://blocks.mvp-subha.me/docs/forms/](https://blocks.mvp-subha.me/docs/forms/)
+- **Dashboards**: [https://blocks.mvp-subha.me/docs/dashboards/](https://blocks.mvp-subha.me/docs/dashboards/)
+
+#### Interactive Components
+- **Animations**: [https://blocks.mvp-subha.me/docs/creative/](https://blocks.mvp-subha.me/docs/creative/)
+- **Chatbot**: [https://blocks.mvp-subha.me/docs/chatbot/](https://blocks.mvp-subha.me/docs/chatbot/)
+
+## Theme Customization
+
+### Color System
+- **Primary Colors**: Defined in [globals.css](mdc:src/app/globals.css)
+- **Customization Guide**: [https://blocks.mvp-subha.me/docs/foundation/colors](https://blocks.mvp-subha.me/docs/foundation/colors)
+- **CSS Variables**: Use for consistent theming across components
+
+### Extending the Theme
+1. **Update CSS Variables**: Modify [globals.css](mdc:src/app/globals.css)
+2. **Create Theme Variants**: Add new color schemes
+3. **Component Theming**: Ensure new components support theme switching
+4. **Documentation**: Update component documentation with theme options

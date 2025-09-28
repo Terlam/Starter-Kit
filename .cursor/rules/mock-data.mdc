@@ -1,0 +1,116 @@
+---
+globs: public/data/*.json,src/lib/mockData.ts,src/lib/dataGenerators.ts
+---
+
+# Mock Data Guidelines
+
+## Mock Data Structure
+
+Mock data is stored in [public/data/data.json](mdc:public/data/data.json) and should follow this structure:
+
+### User Data Structure
+```typescript
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  avatar?: string;
+  role: 'admin' | 'user' | 'moderator';
+  status: 'active' | 'inactive';
+  createdAt: string;
+  lastLogin: string;
+  profile: {
+    bio: string;
+    location: string;
+    website?: string;
+    social: Record<string, string>;
+  };
+  stats: {
+    posts: number;
+    followers: number;
+    following: number;
+  };
+}
+```
+
+### Post Data Structure
+```typescript
+interface Post {
+  id: number;
+  title: string;
+  content: string;
+  excerpt: string;
+  authorId: number;
+  authorName: string;
+  authorAvatar: string;
+  category: string;
+  tags: string[];
+  status: 'published' | 'draft';
+  featured: boolean;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt?: string;
+  stats: {
+    views: number;
+    likes: number;
+    comments: number;
+    shares: number;
+  };
+  image?: string;
+}
+```
+
+## Data Loading Patterns
+
+### Utility Functions
+Create utility functions in `src/lib/mockData.ts`:
+```typescript
+export async function loadMockData(): Promise<MockData>
+export async function getUsers(): Promise<User[]>
+export async function getPosts(): Promise<Post[]>
+export async function getUserById(id: number): Promise<User | null>
+```
+
+### Component Usage
+```tsx
+const [users, setUsers] = useState<User[]>([]);
+const [loading, setLoading] = useState(true);
+
+useEffect(() => {
+  async function loadUsers() {
+    try {
+      const userData = await getUsers();
+      setUsers(userData);
+    } catch (error) {
+      console.error('Error loading users:', error);
+    } finally {
+      setLoading(false);
+    }
+  }
+  loadUsers();
+}, []);
+```
+
+## Data Generation
+
+For larger datasets, use data generators in `src/lib/dataGenerators.ts`:
+- Use `@faker-js/faker` for realistic data
+- Generate consistent relationships between entities
+- Include edge cases (empty fields, long text, etc.)
+- Vary data types and formats
+
+## Best Practices
+
+1. **Data Organization**: Keep related data together, use consistent naming
+2. **Realistic Data**: Use realistic names, emails, and content
+3. **Performance**: Load data asynchronously, implement loading states
+4. **Maintenance**: Document data structure, version mock data
+5. **Type Safety**: Use TypeScript interfaces for all data structures
+
+## Dashboard Mock Data
+
+For admin dashboard, include specific data structures:
+- Analytics data with growth metrics
+- Recent activity logs
+- Revenue charts data
+- User statistics

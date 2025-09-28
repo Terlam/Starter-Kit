@@ -1,0 +1,162 @@
+---
+globs: src/app/api/**/*.ts,src/lib/apiClient.ts,src/lib/services/*.ts
+---
+
+# API Integration Guidelines
+
+## Firebase Authentication API
+
+### Current Implementation
+- **Google OAuth**: [api/google/google.ts](mdc:src/app/api/google/google.ts)
+- **Firebase Config**: [lib/firebase.ts](mdc:src/lib/firebase.ts) and [lib/firebaseClient.ts](mdc:src/lib/firebaseClient.ts)
+
+### Usage Pattern
+```typescript
+import { signInWithGooglePopup } from "@/app/api/google/google";
+
+const handleGoogleLogin = async () => {
+  try {
+    const signedInUser = await signInWithGooglePopup();
+    if (signedInUser) {
+      // Handle successful login
+    }
+  } catch (error) {
+    console.error(error);
+    alert("Google login failed");
+  }
+};
+```
+
+## Google Gemini AI API
+
+### Current Implementation
+- **AI Generation**: [api/generate/route.ts](mdc:src/app/api/generate/route.ts)
+- **Environment Variable**: `GEMNI_API_KEY` (note the typo in the variable name)
+
+### Usage Pattern
+```typescript
+export async function generateContent(prompt: string): Promise<string> {
+  try {
+    const response = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt }),
+    });
+    
+    if (!response.ok) {
+      throw new Error('Failed to generate content');
+    }
+    
+    const data = await response.json();
+    return data.text;
+  } catch (error) {
+    console.error('Error generating content:', error);
+    throw error;
+  }
+}
+```
+
+## API Route Patterns
+
+### Standard API Route Structure
+```typescript
+// src/app/api/endpoint/route.ts
+import { NextRequest, NextResponse } from "next/server";
+
+export async function GET(req: NextRequest) {
+  try {
+    // Implementation
+    return NextResponse.json({ data });
+  } catch (error) {
+    console.error("Error:", error);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+  }
+}
+
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json();
+    // Implementation
+    return NextResponse.json({ data }, { status: 201 });
+  } catch (error) {
+    console.error("Error:", error);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+  }
+}
+```
+
+### Authentication Middleware
+```typescript
+export async function verifyAuth(req: NextRequest) {
+  try {
+    const token = req.headers.get("authorization")?.replace("Bearer ", "");
+    if (!token) {
+      throw new Error("No token provided");
+    }
+    
+    const decodedToken = await getAuth().verifyIdToken(token);
+    return { user: decodedToken, error: null };
+  } catch (error) {
+    return { user: null, error: "Invalid token" };
+  }
+}
+```
+
+## API Client Utilities
+
+### Reusable API Client
+Create `src/lib/apiClient.ts` for consistent API calls:
+```typescript
+class ApiClient {
+  private baseUrl: string;
+  private token: string | null = null;
+
+  async get<T>(endpoint: string): Promise<T>
+  async post<T>(endpoint: string, data: any): Promise<T>
+  async put<T>(endpoint: string, data: any): Promise<T>
+  async delete<T>(endpoint: string): Promise<T>
+}
+```
+
+### Service Layer Pattern
+Create service classes in `src/lib/services/`:
+```typescript
+export class UserService {
+  async getUsers(): Promise<User[]>
+  async getUser(id: string): Promise<User>
+  async createUser(userData: Partial<User>): Promise<User>
+  async updateUser(id: string, userData: Partial<User>): Promise<User>
+  async deleteUser(id: string): Promise<void>
+}
+```
+
+## Error Handling
+
+### API Error Patterns
+- Always handle API errors gracefully
+- Provide meaningful error messages
+- Log errors for debugging
+- Implement retry logic for transient failures
+
+### Response Format
+```typescript
+// Success response
+{ data: T, message?: string }
+
+// Error response
+{ error: string, code?: string, details?: any }
+```
+
+## Security Best Practices
+
+1. **Input Validation**: Validate all input data
+2. **Authentication**: Implement proper authentication checks
+3. **Rate Limiting**: Use rate limiting for API endpoints
+4. **CORS**: Configure CORS headers properly
+5. **Environment Variables**: Use environment variables for sensitive data
+
+## Environment Variables
+
+Required environment variables:
+- `NEXT_PUBLIC_FIREBASE_*` - Firebase configuration
+- `GEMNI_API_KEY` - Google Gemini API key (note the typo)

@@ -1,0 +1,295 @@
+---
+globs: *.ts,*.tsx
+---
+
+# TypeScript Patterns and Best Practices
+
+## Type Definitions
+
+### Interface Naming
+- Use PascalCase for interfaces: `User`, `Post`, `ApiResponse`
+- Use descriptive names: `UserProfile`, `DashboardStats`
+- Group related interfaces in `.types.ts` files
+
+### Type Patterns
+```typescript
+// User interface
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: 'admin' | 'user' | 'moderator';
+  status: 'active' | 'inactive';
+  createdAt: string;
+  profile: UserProfile;
+  stats: UserStats;
+}
+
+// API Response pattern
+interface ApiResponse<T> {
+  data: T;
+  message?: string;
+  error?: string;
+}
+
+// Component Props pattern
+interface ComponentProps {
+  title: string;
+  children: React.ReactNode;
+  className?: string;
+  onClick?: () => void;
+}
+```
+
+## Component Patterns
+
+### Functional Components
+```typescript
+'use client'; // Only when needed for client-side features
+
+interface ComponentProps {
+  title: string;
+  data: DataType[];
+  onAction?: (id: string) => void;
+}
+
+export default function Component({ title, data, onAction }: ComponentProps) {
+  const [state, setState] = useState<StateType>(initialState);
+  
+  return (
+    <div className="component-container">
+      {/* Component content */}
+    </div>
+  );
+}
+```
+
+### Custom Hooks
+```typescript
+// src/hooks/use-custom-hook.ts
+import { useState, useEffect } from 'react';
+
+interface UseCustomHookReturn {
+  data: DataType[];
+  loading: boolean;
+  error: string | null;
+  refetch: () => void;
+}
+
+export function useCustomHook(): UseCustomHookReturn {
+  const [data, setData] = useState<DataType[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Hook implementation
+  
+  return { data, loading, error, refetch };
+}
+```
+
+## API Integration Types
+
+### API Client Types
+```typescript
+// API response types
+interface UserResponse {
+  users: User[];
+  pagination: PaginationInfo;
+}
+
+interface ApiError {
+  message: string;
+  code: string;
+  details?: any;
+}
+
+// Service method types
+type CreateUserData = Omit<User, 'id' | 'createdAt'>;
+type UpdateUserData = Partial<CreateUserData>;
+```
+
+### Firebase Types
+```typescript
+import { User as FirebaseUser } from 'firebase/auth';
+
+interface AuthContextType {
+  user: FirebaseUser | null;
+  loading: boolean;
+  signIn: () => Promise<void>;
+  signOut: () => Promise<void>;
+}
+```
+
+## Error Handling
+
+### Error Types
+```typescript
+interface AppError {
+  message: string;
+  code: string;
+  statusCode?: number;
+  details?: any;
+}
+
+// Error handling pattern
+const handleError = (error: unknown): AppError => {
+  if (error instanceof Error) {
+    return {
+      message: error.message,
+      code: 'UNKNOWN_ERROR',
+    };
+  }
+  
+  return {
+    message: 'An unknown error occurred',
+    code: 'UNKNOWN_ERROR',
+  };
+};
+```
+
+## Utility Types
+
+### Common Utility Types
+```typescript
+// Make all properties optional
+type PartialUser = Partial<User>;
+
+// Pick specific properties
+type UserSummary = Pick<User, 'id' | 'name' | 'email'>;
+
+// Omit specific properties
+type CreateUserData = Omit<User, 'id' | 'createdAt' | 'updatedAt'>;
+
+// Make specific properties required
+type RequiredUser = Required<Pick<User, 'name' | 'email'>> & Omit<User, 'name' | 'email'>;
+```
+
+## Import/Export Patterns
+
+### Import Organization
+```typescript
+// React imports
+import React, { useState, useEffect } from 'react';
+
+// Next.js imports
+import Link from 'next/link';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+
+// Third-party imports
+import { motion } from 'framer-motion';
+import { Button } from '@/Components/ui/button';
+
+// Local imports
+import { User } from '@/lib/types';
+import { useAuth } from '@/hooks/use-auth';
+```
+
+### Export Patterns
+```typescript
+// Default export for components
+export default function Component() {}
+
+// Named exports for utilities
+export { utilityFunction, CONSTANT_VALUE };
+
+// Type exports
+export type { User, Post, ApiResponse };
+```
+
+## Configuration Types
+
+### Environment Variables
+```typescript
+interface EnvironmentConfig {
+  NEXT_PUBLIC_FIREBASE_API_KEY: string;
+  NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: string;
+  NEXT_PUBLIC_FIREBASE_PROJECT_ID: string;
+  GEMNI_API_KEY: string; // Note: typo in actual variable name
+}
+
+// Type-safe environment access
+const config: EnvironmentConfig = {
+  NEXT_PUBLIC_FIREBASE_API_KEY: process.env.NEXT_PUBLIC_FIREBASE_API_KEY!,
+  NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN!,
+  NEXT_PUBLIC_FIREBASE_PROJECT_ID: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID!,
+  GEMNI_API_KEY: process.env.GEMNI_API_KEY!,
+};
+```
+
+## Extensibility Patterns
+
+### MVP Blocks Integration
+When adding MVP Blocks components:
+```typescript
+// Define interfaces for MVP Blocks props
+interface MVPBlockProps {
+  title?: string;
+  description?: string;
+  variant?: 'default' | 'outlined' | 'filled';
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+}
+
+// Extend base interfaces for customization
+interface CustomFlipCardProps extends MVPBlockProps {
+  question: string;
+  answer: string;
+  category?: string;
+  difficulty?: 'easy' | 'medium' | 'hard';
+}
+```
+
+### Component Extension Patterns
+```typescript
+// Base component interface
+interface BaseComponentProps {
+  children: React.ReactNode;
+  className?: string;
+  variant?: string;
+}
+
+// Extended component interface
+interface ExtendedComponentProps extends BaseComponentProps {
+  title: string;
+  description?: string;
+  onAction?: () => void;
+}
+```
+
+### Theme Integration
+```typescript
+// Theme configuration interface
+interface ThemeConfig {
+  colors: {
+    primary: string;
+    secondary: string;
+    background: string;
+    foreground: string;
+  };
+  spacing: {
+    sm: string;
+    md: string;
+    lg: string;
+  };
+}
+
+// Component with theme support
+interface ThemedComponentProps {
+  theme?: Partial<ThemeConfig>;
+  variant?: 'light' | 'dark';
+}
+```
+
+## Best Practices
+
+1. **Always use TypeScript** - No `any` types unless absolutely necessary
+2. **Define interfaces** for all data structures
+3. **Use strict type checking** - Enable strict mode in tsconfig.json
+4. **Type API responses** - Define interfaces for all API responses
+5. **Use utility types** - Leverage TypeScript utility types
+6. **Type component props** - Always type component props and state
+7. **Handle errors properly** - Use proper error types and handling
+8. **Design for extension** - Create interfaces that can be extended
+9. **MVP Blocks compatibility** - Ensure custom components work with MVP Blocks
+10. **Theme support** - Design components to support theme switching

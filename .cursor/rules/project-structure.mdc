@@ -1,0 +1,81 @@
+---
+alwaysApply: true
+---
+
+# Project Structure and Architecture
+
+This is a **Next.js 15 Starter Kit designed for extension** with TypeScript, Firebase authentication, Google Gemini AI, and Shadcn/UI components. The project is structured to easily accommodate new MVP blocks, components, and features.
+
+## Directory Structure
+
+- **`src/app/`** - Next.js App Router with pages and API routes
+  - `api/` - Server-side API endpoints ([api/generate/route.ts](mdc:src/app/api/generate/route.ts), [api/google/google.ts](mdc:src/app/api/google/google.ts))
+  - `dashboard/` - Admin dashboard page ([dashboard/page.tsx](mdc:src/app/dashboard/page.tsx))
+  - `login/`, `signup/` - Authentication pages
+  - `AImodel/` - AI model interface page
+  - `layout.tsx` - Root layout component
+  - `page.tsx` - Home page
+
+- **`src/Components/`** - React components organized by functionality
+  - `mvp-blocks/` - Pre-built MVP components ([mvp-blocks/login.tsx](mdc:src/Components/mvp-blocks/login.tsx), [mvp-blocks/signup.tsx](mdc:src/Components/mvp-blocks/signup.tsx), [mvp-blocks/spline-hero.tsx](mdc:src/Components/mvp-blocks/spline-hero.tsx))
+  - `layouts/` - Layout components ([layouts/navigation.tsx](mdc:src/Components/layouts/navigation.tsx), [layouts/footer.tsx](mdc:src/Components/layouts/footer.tsx))
+  - `ui/` - Shadcn/UI components ([ui/button.tsx](mdc:src/Components/ui/button.tsx), [ui/card.tsx](mdc:src/Components/ui/card.tsx))
+  - `Gemini/` - AI-specific components
+  - `Landingpagecomps/` - Landing page components
+
+- **`src/lib/`** - Utility libraries
+  - [firebase.ts](mdc:src/lib/firebase.ts) - Firebase configuration
+  - [firebaseClient.ts](mdc:src/lib/firebaseClient.ts) - Firebase client setup
+  - [utils.ts](mdc:src/lib/utils.ts) - General utilities
+
+- **`public/data/`** - Mock data files ([data/data.json](mdc:public/data/data.json))
+
+## Key Technologies
+
+- **Next.js 15** with App Router and Turbopack
+- **TypeScript** for type safety
+- **Firebase** for authentication (Google OAuth)
+- **Google Gemini AI** for content generation
+- **Tailwind CSS** for styling
+- **Shadcn/UI** and **Radix UI** for components
+- **Framer Motion** for animations
+
+## Import Paths
+
+Use these import aliases defined in [tsconfig.json](mdc:tsconfig.json):
+- `@/Components/*` for components
+- `@/lib/*` for utilities
+- `@/*` for src directory
+
+## File Naming Conventions
+
+- **Components**: PascalCase (`UserProfile.tsx`)
+- **Pages**: lowercase (`dashboard/page.tsx`)
+- **API Routes**: lowercase (`api/users/route.ts`)
+- **Utilities**: camelCase (`userService.ts`)
+- **Types**: PascalCase (`User.types.ts`)
+
+## Extensibility Guidelines
+
+### Adding New Features
+1. **MVP Blocks**: Add to `src/Components/mvp-blocks/` following the established patterns
+2. **Custom Components**: Create in appropriate feature directories
+3. **Pages**: Add new routes in `src/app/` following Next.js App Router conventions
+4. **API Routes**: Extend `src/app/api/` with new endpoints
+5. **Utilities**: Add helper functions to `src/lib/`
+
+### MVP Blocks Integration
+- **Documentation**: [https://blocks.mvp-subha.me/docs/](https://blocks.mvp-subha.me/docs/)
+- **CLI Tool**: `npx mvpblocks add [component-name]`
+- **Theme Customization**: [https://blocks.mvp-subha.me/docs/foundation/colors](https://blocks.mvp-subha.me/docs/foundation/colors)
+
+### Component Organization
+- **Feature-based**: Group related components in feature directories
+- **Reusable**: Place shared components in `src/Components/ui/`
+- **MVP Blocks**: Use `src/Components/mvp-blocks/` for pre-built components
+- **Layouts**: Keep structural components in `src/Components/layouts/`
+
+### Data Management
+- **Mock Data**: Extend `public/data/data.json` for development
+- **Types**: Define interfaces in `src/lib/types/` or component files
+- **API Integration**: Follow patterns in `src/app/api/`

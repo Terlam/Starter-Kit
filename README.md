@@ -71,12 +71,16 @@ This is used to display dummy data in the dashboard and other components.
 [
   {
     "id": 1,
-    "header": "Executive Summary",
-    "type": "Summary",
-    "status": "Done",
-    "target": "100",
-    "limit": "200",
-    "reviewer": "Eddie Lake"
+    "header": "Black Excellence in Tech",
+    "type": "Community Impact",
+    "status": "Active",
+    "target": "10,000",
+    "limit": "15,000",
+    "reviewer": "Dr. Mark Dean",
+    "description": "Supporting Black technologists in building the future of innovation",
+    "progress": 85,
+    "category": "Education",
+    "priority": "High"
   }
 ]
 ```

@@ -30,9 +30,11 @@ import {
   Moon,
   Sun,
   User,
+  Home,
 } from 'lucide-react';
 
 const menuItems = [
+  { title: 'Home', icon: Home, href: '/' },
   { title: 'Dashboard', icon: LayoutDashboard, href: '#dashboard' },
   { title: 'Analytics', icon: BarChart3, href: '#analytics' },
   { title: 'Users', icon: Users, href: '#users' },

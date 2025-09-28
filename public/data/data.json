@@ -1,17 +1,106 @@
-{
-  "users": [
-    {
-        "info":"//This is mock data. Add more data as needed for testing.",
-      "id": 1,
-      "name": "Alice Johnson",
-      "email": "alice@example.com"
-    }
-  ],
-  "posts": [
-    {
-      "id": 101,
-      "title": "Sample Post",
-      "content": "This is example content."
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "header": "Full-Stack Development Mastery",
+    "type": "Skill Development",
+    "status": "Active",
+    "target": "12",
+    "limit": "15",
+    "reviewer": "Ananse AI",
+    "description": "Mastering React, Node.js, and database technologies for full-stack development",
+    "progress": 80,
+    "category": "Technical Skills",
+    "priority": "High"
+  },
+  {
+    "id": 2,
+    "header": "Cultural Intelligence Training",
+    "type": "Soft Skills",
+    "status": "In Progress",
+    "target": "8",
+    "limit": "10",
+    "reviewer": "Ananse AI",
+    "description": "Developing cross-cultural communication and leadership skills for global teams",
+    "progress": 60,
+    "category": "Cultural Intelligence",
+    "priority": "High"
+  },
+  {
+    "id": 3,
+    "header": "Senior Developer Promotion",
+    "type": "Career Goal",
+    "status": "Planning",
+    "target": "6",
+    "limit": "8",
+    "reviewer": "Ananse AI",
+    "description": "Building leadership skills and technical expertise for senior developer role",
+    "progress": 40,
+    "category": "Career Advancement",
+    "priority": "High"
+  },
+  {
+    "id": 4,
+    "header": "Mentorship Network Building",
+    "type": "Community Engagement",
+    "status": "Active",
+    "target": "20",
+    "limit": "25",
+    "reviewer": "Ananse AI",
+    "description": "Connecting with African tech professionals and building meaningful mentorship relationships",
+    "progress": 75,
+    "category": "Networking",
+    "priority": "Medium"
+  },
+  {
+    "id": 5,
+    "header": "AI/ML Specialization",
+    "type": "Technical Learning",
+    "status": "Completed",
+    "target": "4",
+    "limit": "4",
+    "reviewer": "Ananse AI",
+    "description": "Completed machine learning fundamentals and Python AI development course",
+    "progress": 100,
+    "category": "Technical Skills",
+    "priority": "Low"
+  },
+  {
+    "id": 6,
+    "header": "Startup Launch Preparation",
+    "type": "Entrepreneurship",
+    "status": "Active",
+    "target": "3",
+    "limit": "5",
+    "reviewer": "Ananse AI",
+    "description": "Developing business plan and MVP for African market-focused tech solution",
+    "progress": 65,
+    "category": "Entrepreneurship",
+    "priority": "High"
+  },
+  {
+    "id": 7,
+    "header": "Public Speaking Confidence",
+    "type": "Communication Skills",
+    "status": "In Progress",
+    "target": "5",
+    "limit": "6",
+    "reviewer": "Ananse AI",
+    "description": "Building confidence to speak at tech conferences and share knowledge with community",
+    "progress": 55,
+    "category": "Communication",
+    "priority": "Medium"
+  },
+  {
+    "id": 8,
+    "header": "Open Source Contributions",
+    "type": "Community Impact",
+    "status": "Planning",
+    "target": "10",
+    "limit": "12",
+    "reviewer": "Ananse AI",
+    "description": "Contributing to open source projects that benefit African developer community",
+    "progress": 25,
+    "category": "Community Impact",
+    "priority": "Medium"
+  }
+]

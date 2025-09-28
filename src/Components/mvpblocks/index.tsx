@@ -11,41 +11,42 @@ import { SystemStatus } from '../ui/system-status';
 import { RecentActivity } from '../ui/recent-activity';
 import { DashboardHeader } from '../ui/dashboard-header';
 import { AdminSidebar } from '../ui/admin-sidebar';
+import DashboardDataTable from '../ui/dashboard-data-table';
 
 // Dashboard stats data
 const stats = [
   {
-    title: 'Total Users',
+    title: 'Community Members',
     value: '12,345',
-    change: '+12%',
+    change: '+18%',
     changeType: 'positive' as const,
     icon: Users,
     color: 'text-blue-500',
     bgColor: 'bg-blue-500/10',
   },
   {
-    title: 'Revenue',
-    value: '$45,678',
-    change: '+8.2%',
+    title: 'Initiatives Funded',
+    value: '$2.4M',
+    change: '+25%',
     changeType: 'positive' as const,
     icon: DollarSign,
     color: 'text-green-500',
     bgColor: 'bg-green-500/10',
   },
   {
-    title: 'Active Sessions',
-    value: '2,456',
-    change: '+15%',
+    title: 'Active Programs',
+    value: '47',
+    change: '+12%',
     changeType: 'positive' as const,
     icon: Activity,
     color: 'text-purple-500',
     bgColor: 'bg-purple-500/10',
   },
   {
-    title: 'Page Views',
-    value: '34,567',
-    change: '-2.4%',
-    changeType: 'negative' as const,
+    title: 'Impact Reach',
+    value: '156K',
+    change: '+32%',
+    changeType: 'positive' as const,
     icon: Eye,
     color: 'text-orange-500',
     bgColor: 'bg-orange-500/10',
@@ -87,10 +88,10 @@ export default function AdminDashboard() {
             <div className="mx-auto max-w-6xl space-y-4 sm:space-y-6">
               <div className="px-2 sm:px-0">
                 <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
-                  Welcome Admin
+                  🌟 Dashboard
                 </h1>
                 <p className="text-muted-foreground text-sm sm:text-base">
-                  Here&apos;s what&apos;s happening with your platform today.
+                  Celebrating innovation, community impact, and the future of technology.
                 </p>
               </div>
 
@@ -105,6 +106,7 @@ export default function AdminDashboard() {
               <div className="grid grid-cols-1 gap-4 sm:gap-6 xl:grid-cols-3">
                 {/* Charts Section */}
                 <div className="space-y-4 sm:space-y-6 xl:col-span-2">
+                  <DashboardDataTable />
                   <RevenueChart />
                   <UsersTable onAddUser={handleAddUser} />
                 </div>

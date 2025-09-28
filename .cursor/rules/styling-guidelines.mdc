@@ -1,0 +1,250 @@
+---
+globs: *.tsx,*.css,src/app/globals.css
+---
+
+# Styling Guidelines
+
+## Tailwind CSS Configuration
+
+### Color Palette
+The project uses a consistent dark theme color scheme:
+
+```css
+/* Primary colors */
+--background: #0D1117        /* Dark background */
+--foreground: #FFFFFF        /* White text */
+--accent: #2B6CB0           /* Blue accent */
+--muted: #A0AEC0            /* Muted text */
+--success: #38A169          /* Success green */
+
+/* Usage in Tailwind */
+bg-[#0D1117]               /* Dark background */
+text-[#FFFFFF]             /* White text */
+text-[#2B6CB0]             /* Blue accent */
+text-[#A0AEC0]             /* Muted text */
+text-[#38A169]             /* Success green */
+```
+
+### CSS Variables
+Define custom CSS variables in [globals.css](mdc:src/app/globals.css):
+
+```css
+:root {
+  --background-primary: #0D1117;
+  --background-secondary: #161B22;
+  --text-primary: #FFFFFF;
+  --text-secondary: #A0AEC0;
+  --accent-primary: #2B6CB0;
+  --accent-success: #38A169;
+}
+```
+
+## Component Styling Patterns
+
+### Dark Theme Components
+```tsx
+// Standard dark theme container
+<div className="flex min-h-screen items-center justify-center bg-[#0D1117] text-white">
+  {/* Content */}
+</div>
+
+// Card with dark theme
+<div className="bg-[#161B22] border border-gray-700 rounded-lg p-6">
+  {/* Card content */}
+</div>
+
+// Button with accent color
+<button className="bg-[#2B6CB0] hover:bg-[#1e4a72] text-white px-4 py-2 rounded-lg">
+  Click me
+</button>
+```
+
+### Responsive Design
+```tsx
+// Mobile-first responsive design
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {/* Responsive grid */}
+</div>
+
+// Responsive text sizing
+<h1 className="text-2xl md:text-4xl lg:text-6xl font-bold">
+  Responsive heading
+</h1>
+
+// Responsive spacing
+<div className="p-4 md:p-6 lg:p-8">
+  {/* Responsive padding */}
+</div>
+```
+
+### Shadcn/UI Integration
+```tsx
+// Use Shadcn/UI components with custom styling
+import { Button } from '@/Components/ui/button';
+import { Card } from '@/Components/ui/card';
+
+<Card className="bg-[#161B22] border-gray-700">
+  <Button variant="default" className="bg-[#2B6CB0] hover:bg-[#1e4a72]">
+    Action
+  </Button>
+</Card>
+```
+
+## Animation Patterns
+
+### Framer Motion
+```tsx
+import { motion } from 'framer-motion';
+
+// Fade in animation
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5 }}
+>
+  Content
+</motion.div>
+
+// Stagger animation
+<motion.div
+  initial="hidden"
+  animate="visible"
+  variants={{
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  }}
+>
+  {/* Animated children */}
+</motion.div>
+```
+
+## Layout Patterns
+
+### Page Layout
+```tsx
+// Standard page layout
+export default function Page() {
+  return (
+    <main className="min-h-screen bg-[#0D1117]">
+      <div className="container mx-auto px-4 py-8">
+        {/* Page content */}
+      </div>
+    </main>
+  );
+}
+```
+
+### Dashboard Layout
+```tsx
+// Dashboard layout with sidebar
+<div className="flex h-screen bg-[#0D1117]">
+  <aside className="w-64 bg-[#161B22] border-r border-gray-700">
+    {/* Sidebar content */}
+  </aside>
+  <main className="flex-1 overflow-auto">
+    {/* Main content */}
+  </main>
+</div>
+```
+
+## Form Styling
+
+### Input Fields
+```tsx
+<input
+  type="text"
+  className="w-full px-3 py-2 bg-[#161B22] border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-[#2B6CB0] focus:outline-none"
+  placeholder="Enter text..."
+/>
+```
+
+### Form Layout
+```tsx
+<form className="space-y-6">
+  <div>
+    <label className="block text-sm font-medium text-gray-300 mb-2">
+      Label
+    </label>
+    <input className="form-input" />
+  </div>
+  <button className="w-full bg-[#2B6CB0] hover:bg-[#1e4a72] text-white py-2 px-4 rounded-lg">
+    Submit
+  </button>
+</form>
+```
+
+## Status Indicators
+
+### Status Badges
+```tsx
+// Success status
+<span className="inline-block px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">
+  Active
+</span>
+
+// Error status
+<span className="inline-block px-2 py-1 text-xs rounded-full bg-red-100 text-red-800">
+  Error
+</span>
+
+// Warning status
+<span className="inline-block px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800">
+  Warning
+</span>
+```
+
+## Loading States
+
+### Loading Spinner
+```tsx
+<div className="flex items-center justify-center p-8">
+  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#2B6CB0]"></div>
+</div>
+```
+
+### Skeleton Loading
+```tsx
+<div className="animate-pulse">
+  <div className="h-4 bg-gray-700 rounded w-3/4 mb-2"></div>
+  <div className="h-4 bg-gray-700 rounded w-1/2"></div>
+</div>
+```
+
+## MVP Blocks Integration
+
+### Theme Customization
+- **Official Guide**: [https://blocks.mvp-subha.me/docs/foundation/colors](https://blocks.mvp-subha.me/docs/foundation/colors)
+- **Color System**: Use CSS variables for consistent theming
+- **Component Theming**: Ensure new components support theme switching
+
+### Adding MVP Blocks Components
+- **Browse Components**: [https://blocks.mvp-subha.me/docs/](https://blocks.mvp-subha.me/docs/)
+- **CLI Installation**: `npx mvpblocks add [component-name]`
+- **Theme Adaptation**: Modify components to match project theme
+- **Responsive Design**: Ensure components work on all screen sizes
+
+### Custom Component Styling
+When creating custom components:
+1. **Follow MVP Blocks Patterns**: Use similar structure and naming
+2. **CSS Variables**: Leverage the defined color system
+3. **Tailwind Integration**: Use utility classes with CSS variables
+4. **Dark Theme Support**: Ensure components work in dark mode
+5. **Animation Consistency**: Use Framer Motion for smooth transitions
+
+## Best Practices
+
+1. **Consistent Color Usage**: Always use the defined color palette
+2. **Responsive Design**: Mobile-first approach with proper breakpoints
+3. **Dark Theme**: Maintain consistent dark theme throughout
+4. **Accessibility**: Use proper contrast ratios and semantic HTML
+5. **Performance**: Use Tailwind's utility classes efficiently
+6. **Component Reusability**: Create reusable styled components
+7. **Animation**: Use Framer Motion for smooth animations
+8. **Loading States**: Always provide loading and error states
+9. **MVP Blocks Integration**: Follow established patterns when adding new components
+10. **Theme Extensibility**: Design components to support future theme changes
