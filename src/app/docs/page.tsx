@@ -1,10 +1,16 @@
 import DocsPage from '@/Components/docs/DocsPage';
+import Navigation from '@/Components/layouts/navigation';
 
 export const metadata = {
-  title: 'Documentation - Starter Kit',
-  description: 'Learn how to use and extend the Next.js 15 Starter Kit with MVP Blocks components',
+  title: 'Documentation - Ananse AI',
+  description: 'Learn how to use and extend the Ananse AI mentorship platform',
 };
 
 export default function Docs() {
-  return <DocsPage />;
+  return (
+    <div className="min-h-screen bg-[#0D1117]">
+      <Navigation />
+      <DocsPage />
+    </div>
+  );
 }

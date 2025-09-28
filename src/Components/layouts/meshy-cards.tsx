@@ -1,34 +1,33 @@
-import Image from 'next/image';
 const features = [
   {
-    icon: <Image src="/images/next.svg" alt="Next.js" width={24} height={24} className="h-6 w-6" />,
-    title: 'Next.js',
-    desc: 'Build lightning-fast UI components with a simplified Next.js setup, perfect for learning and creating.',
+    icon: "🕷️",
+    title: 'Cultural AI Mentor',
+    desc: 'Get guidance that understands both Western tech industry dynamics and African cultural contexts, helping you navigate your career while staying rooted in your heritage.',
   },
   {
-    icon: <Image src="/images/typescript.png" alt="React" width={24} height={24} className="h-6 w-6" />,
-    title: 'TypeScript',
-    desc: 'Enhance your code quality and catch errors early. Our kit includes TypeScript, ensuring a smoother development experience.',
+    icon: "💼",
+    title: 'Career Guidance',
+    desc: 'Receive personalized mentorship on career advancement, workplace dynamics, and professional development tailored to African diaspora experiences.',
   },
   {
-    icon: <Image src="/images/Tailwind_CSS_Logo.png" alt="Tailwind CSS" width={24} height={24} className="h-6 w-6" />,
-    title: 'Tailwind CSS',
-    desc: 'Rapidly build and design beautiful UIs. Our kit comes ready with Tailwind CSS for utility-first styling.',
+    icon: "📚",
+    title: 'Skills Assessment',
+    desc: 'Test your technical knowledge and cultural intelligence through interactive scenarios that prepare you for real-world challenges in tech.',
   },
   {
-    icon: <Image src="/images/shadcn-ui-logo.png" alt="Shadcn UI" width={24} height={24} className="h-6 w-6" />,
-    title: 'Shadcn UI',
-    desc: 'Build stunning, accessible UIs. Our kit includes shadcn/ui, giving you a collection of customizable, high-quality components.',
+    icon: "👥",
+    title: 'Community Network',
+    desc: 'Connect with African tech professionals across the diaspora, find mentors, and build meaningful relationships that span continents.',
   },
   {
-    icon: <Image src="/images/framer-motion.svg" alt="Framer Motion" width={24} height={24} className="h-6 w-6" />,
-    title: 'Framer Motion',
-    desc: 'Add elegant and interactive animations to your UI components with ease. Our kit includes Framer Motion for seamless motion.',
+    icon: "📖",
+    title: 'Success Stories',
+    desc: 'Learn from inspiring journeys of African tech professionals and discover cultural wisdom that connects heritage with innovation.',
   },
   {
-    icon: <Image src="/images/react-icon.jpg" alt="React.js" width={24} height={24} className="h-6 w-6" />,
-    title: 'React.js',
-    desc: 'The industry-standard for building modern user interfaces. Our kit gives you a solid foundation with the power of React.',
+    icon: "🌍",
+    title: 'Cultural Bridge',
+    desc: 'Navigate between different cultural contexts while building your tech career, maintaining your identity and community connections.',
   },
 ];
 
@@ -38,17 +37,20 @@ export default function Feature1() {
       <div className="mx-auto max-w-screen-xl px-4 md:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h3 className="text-3xl font-normal sm:text-4xl md:text-5xl">
-            Features
+            How Ananse AI Guides Your Journey
           </h3>
+          <p className="mt-4 text-lg text-gray-400">
+            Like the spider&apos;s web, we connect wisdom, technology, and culture to help you weave your success story
+          </p>
         </div>
         <div className="mt-12">
           <ul className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((item, idx) => (
               <li
                 key={idx}
-                className="transform-gpu space-y-4 rounded-xl border border-[#2B6CB0]/20 bg-[#0D1117] p-6 transition-all duration-300 hover:scale-[1.03] hover:border-[#2B6CB0] hover:bg-[#0D1117] hover:shadow-2xl hover:shadow-[#2B6CB0]/10 cursor-pointer"
+                className="transform-gpu space-y-4 rounded-xl border border-[#FFD700]/20 bg-[#0D1117] p-6 transition-all duration-300 hover:scale-[1.03] hover:border-[#FFD700] hover:bg-[#0D1117] hover:shadow-2xl hover:shadow-[#FFD700]/10 cursor-pointer"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-white">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#FFD700]/10 text-2xl">
                   {item.icon}
                 </div>
                 <h4 className="text-xl font-bold tracking-tight text-white">

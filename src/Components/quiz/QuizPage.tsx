@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import FlipCard from './FlipCard';
-import { africanCountriesQuiz, quizCategories, difficultyLevels } from '@/lib/quizData';
+import { techSkillsAssessment, quizCategories, difficultyLevels } from '@/lib/quizData';
 import { Button } from '@/Components/ui/button';
 
 export default function QuizPage() {
@@ -12,7 +12,7 @@ export default function QuizPage() {
 
   // Filter questions based on selected category and difficulty
   const filteredQuestions = useMemo(() => {
-    return africanCountriesQuiz.filter(question => {
+    return techSkillsAssessment.filter(question => {
       const categoryMatch = selectedCategory === 'All' || question.category === selectedCategory;
       const difficultyMatch = selectedDifficulty === 'all' || question.difficulty === selectedDifficulty;
       return categoryMatch && difficultyMatch;
@@ -40,30 +40,36 @@ export default function QuizPage() {
 
   if (totalQuestions === 0) {
     return (
-      <div className="min-h-screen bg-[#0D1117] py-12">
+      <div className="py-12">
         <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h1 className="mb-8 text-4xl font-bold text-white">African Countries Quiz</h1>
-            <div className="rounded-lg bg-[#161B22] p-8 text-white">
-              <h2 className="mb-4 text-2xl font-semibold">No questions found</h2>
-              <p className="text-gray-400">
-                Try adjusting your filters to see more questions.
-              </p>
-            </div>
+        <div className="text-center">
+          <h1 className="mb-8 text-4xl font-bold text-white flex items-center justify-center gap-2">
+            <span className="text-5xl">🕷️</span>
+            Tech Skills Assessment
+          </h1>
+          <div className="rounded-lg bg-[#161B22] p-8 text-white">
+            <h2 className="mb-4 text-2xl font-semibold">No questions found</h2>
+            <p className="text-gray-400">
+              Try adjusting your filters to see more assessment scenarios.
+            </p>
           </div>
+        </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#0D1117] py-12">
+    <div className="py-12">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="mb-12 text-center">
-          <h1 className="mb-4 text-4xl font-bold text-white">African Countries Quiz</h1>
+          <h1 className="mb-4 text-4xl font-bold text-white flex items-center justify-center gap-2">
+            <span className="text-5xl">🕷️</span>
+            Tech Skills Assessment
+          </h1>
           <p className="text-lg text-gray-400">
-            Test your knowledge about African countries and facts with interactive flip cards
+            Test your technical knowledge, cultural intelligence, and career readiness with interactive scenarios
           </p>
         </div>
 
@@ -107,9 +113,10 @@ export default function QuizPage() {
 
           <Button
             onClick={resetQuiz}
-            className="bg-[#2B6CB0] hover:bg-[#1e4a72] text-white"
+            className="bg-[#FFD700] hover:bg-[#FFA500] text-black font-bold flex items-center gap-2"
           >
-            Reset Quiz
+            <span>🕷️</span>
+            Reset Assessment
           </Button>
         </div>
 
@@ -150,9 +157,9 @@ export default function QuizPage() {
           
           <Button
             onClick={randomQuestion}
-            className="bg-[#38A169] hover:bg-[#2d7a52] text-white"
+            className="bg-[#FFD700] hover:bg-[#FFA500] text-black font-bold"
           >
-            Random Question
+            Random Scenario
           </Button>
           
           <Button
@@ -167,8 +174,11 @@ export default function QuizPage() {
         {/* Explanation */}
         {currentQuestion?.explanation && (
           <div className="mt-8 max-w-2xl mx-auto">
-            <div className="rounded-lg bg-[#161B22] p-6">
-              <h3 className="mb-2 text-lg font-semibold text-white">Did you know?</h3>
+            <div className="rounded-lg bg-gradient-to-r from-[#FFD700]/10 to-[#FFA500]/10 p-6 border border-[#FFD700]/20">
+              <h3 className="mb-2 text-lg font-semibold text-[#FFD700] flex items-center gap-2">
+                <span>🕷️</span>
+                Ananse&apos;s Insight
+              </h3>
               <p className="text-gray-300">{currentQuestion.explanation}</p>
             </div>
           </div>
@@ -177,8 +187,11 @@ export default function QuizPage() {
         {/* Footer */}
         <div className="mt-12 text-center">
           <p className="text-gray-500">
-            Hover over the cards to reveal answers. Use the navigation buttons to explore different questions.
+            Hover over the cards to reveal answers. Use the navigation buttons to explore different career scenarios.
           </p>
+          <div className="mt-4 text-sm text-gray-600">
+            <span>🕷️</span> Each scenario helps you develop both technical skills and cultural intelligence
+          </div>
         </div>
       </div>
     </div>

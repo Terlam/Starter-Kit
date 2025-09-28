@@ -70,8 +70,11 @@ export default function DashboardDataTable() {
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Black Excellence in Tech</CardTitle>
-          <CardDescription>Loading community initiatives...</CardDescription>
+          <CardTitle className="flex items-center gap-2">
+            <span className="text-2xl">🕷️</span>
+            Career Progress Tracking
+          </CardTitle>
+          <CardDescription>Loading your mentorship journey...</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex items-center justify-center py-8">
@@ -86,7 +89,10 @@ export default function DashboardDataTable() {
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Black Excellence in Tech</CardTitle>
+          <CardTitle className="flex items-center gap-2">
+            <span className="text-2xl">🕷️</span>
+            Career Progress Tracking
+          </CardTitle>
           <CardDescription>Error loading data</CardDescription>
         </CardHeader>
         <CardContent>
@@ -102,11 +108,11 @@ export default function DashboardDataTable() {
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <span className="text-2xl">🌟</span>
-          Black Excellence in Tech
+          <span className="text-2xl">🕷️</span>
+          Career Progress Tracking
         </CardTitle>
         <CardDescription>
-          Community initiatives celebrating Black and African innovation in technology
+          Your mentorship journey and skill development progress with Ananse AI
         </CardDescription>
       </CardHeader>
       <CardContent>

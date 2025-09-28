@@ -10,8 +10,8 @@ const inter = Inter({
 
 
 export const metadata: Metadata = {
-  title: "Starter Kit",
-  description: "The Next Generation of MVP Starters",
+  title: "Ananse AI - Cultural Wisdom Meets Tech Mentorship",
+  description: "Connect with culturally-aware AI mentorship that understands both Western tech industry dynamics and African cultural contexts. Build your career while staying rooted in your heritage.",
   icons: {
     icon: "/favicon.png",
   },

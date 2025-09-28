@@ -7,188 +7,159 @@ export interface QuizQuestion {
   explanation?: string;
 }
 
-export const africanCountriesQuiz: QuizQuestion[] = [
-  // Easy questions
+export const techSkillsAssessment: QuizQuestion[] = [
+  // Programming & Technical Skills
   {
     id: 1,
-    question: "What is the largest country in Africa by land area?",
-    answer: "Algeria",
-    category: "Geography",
+    question: "You're working on a React project and need to manage component state. What's the modern approach?",
+    answer: "Use React hooks like useState and useEffect",
+    category: "Programming",
     difficulty: "easy",
-    explanation: "Algeria covers approximately 2.38 million square kilometers."
+    explanation: "React hooks provide a clean way to manage state and side effects in functional components."
   },
   {
     id: 2,
-    question: "Which African country is known as the 'Rainbow Nation'?",
-    answer: "South Africa",
-    category: "Culture",
-    difficulty: "easy",
-    explanation: "South Africa is called the Rainbow Nation due to its diverse population and cultures."
+    question: "Your team is deciding on a database for a new project. What factors should you consider?",
+    answer: "Data structure, scalability needs, consistency requirements, and team expertise",
+    category: "System Design",
+    difficulty: "medium",
+    explanation: "Database selection depends on data patterns, performance requirements, and team capabilities."
   },
   {
     id: 3,
-    question: "What is the capital city of Egypt?",
-    answer: "Cairo",
-    category: "Geography",
-    difficulty: "easy",
-    explanation: "Cairo is the largest city in Africa and the capital of Egypt."
+    question: "You're experiencing slow API responses. What's your debugging approach?",
+    answer: "Check network latency, database queries, server resources, and code bottlenecks",
+    category: "Performance",
+    difficulty: "medium",
+    explanation: "Systematic debugging helps identify the root cause of performance issues."
   },
+
+  // Career & Professional Development
   {
     id: 4,
-    question: "Which African country has the most pyramids?",
-    answer: "Sudan",
-    category: "History",
-    difficulty: "easy",
-    explanation: "Sudan has more pyramids than Egypt, with over 200 pyramids in the ancient city of Meroë."
+    question: "You're the only person of color on your development team. How do you handle microaggressions?",
+    answer: "Document incidents, seek support from mentors, and address patterns constructively",
+    category: "Career",
+    difficulty: "medium",
+    explanation: "Professional handling of bias while protecting your well-being is crucial for long-term success."
   },
   {
     id: 5,
-    question: "What is the official language of Nigeria?",
-    answer: "English",
-    category: "Language",
+    question: "You want to transition from frontend to full-stack development. What's your learning strategy?",
+    answer: "Learn backend frameworks, databases, and deployment while building portfolio projects",
+    category: "Career",
     difficulty: "easy",
-    explanation: "English is the official language, though Nigeria has over 500 indigenous languages."
+    explanation: "Hands-on learning with real projects demonstrates practical skills to employers."
   },
-
-  // Medium questions
   {
     id: 6,
-    question: "Which African country is home to the ancient city of Timbuktu?",
-    answer: "Mali",
-    category: "History",
+    question: "You're negotiating a job offer at a tech company. What should you consider beyond salary?",
+    answer: "Equity, benefits, growth opportunities, work-life balance, and cultural fit",
+    category: "Career",
     difficulty: "medium",
-    explanation: "Timbuktu was a major center of Islamic learning and trade in medieval times."
+    explanation: "Total compensation includes many factors that affect long-term career satisfaction."
   },
+
+  // Cultural Intelligence & Networking
   {
     id: 7,
-    question: "What is the smallest country in Africa?",
-    answer: "Seychelles",
-    category: "Geography",
+    question: "You're working with a remote team across different time zones in Africa. How do you manage collaboration?",
+    answer: "Establish clear communication protocols, use asynchronous tools, and respect cultural differences",
+    category: "Cultural Intelligence",
     difficulty: "medium",
-    explanation: "Seychelles is an archipelago nation with a total area of 459 square kilometers."
+    explanation: "Effective remote collaboration requires cultural awareness and structured communication."
   },
   {
     id: 8,
-    question: "Which African country was never colonized by European powers?",
-    answer: "Ethiopia",
-    category: "History",
-    difficulty: "medium",
-    explanation: "Ethiopia successfully resisted colonization, except for a brief Italian occupation (1936-1941)."
+    question: "You want to build a professional network in the African tech community. Where do you start?",
+    answer: "Join African tech communities, attend conferences, contribute to open source, and offer mentorship",
+    category: "Networking",
+    difficulty: "easy",
+    explanation: "Building genuine relationships through contribution and mutual support creates lasting connections."
   },
   {
     id: 9,
-    question: "What is the highest mountain in Africa?",
-    answer: "Mount Kilimanjaro",
-    category: "Geography",
+    question: "You're presenting a technical solution to stakeholders from different cultural backgrounds. How do you approach it?",
+    answer: "Use clear visuals, avoid jargon, provide context, and encourage questions",
+    category: "Communication",
     difficulty: "medium",
-    explanation: "Mount Kilimanjaro in Tanzania stands at 5,895 meters (19,341 feet) above sea level."
+    explanation: "Effective technical communication considers audience diversity and cultural context."
   },
+
+  // Soft Skills & Leadership
   {
     id: 10,
-    question: "Which African country has the largest population?",
-    answer: "Nigeria",
-    category: "Demographics",
-    difficulty: "medium",
-    explanation: "Nigeria has over 200 million people, making it the most populous country in Africa."
+    question: "Your team is behind on a project deadline. As a junior developer, how do you help?",
+    answer: "Identify bottlenecks, offer to take on additional tasks, and communicate blockers early",
+    category: "Leadership",
+    difficulty: "easy",
+    explanation: "Proactive problem-solving and clear communication demonstrate leadership potential."
   },
   {
     id: 11,
-    question: "What is the longest river in Africa?",
-    answer: "Nile River",
-    category: "Geography",
+    question: "You disagree with a senior developer's technical approach. How do you handle this?",
+    answer: "Present your perspective with data, ask questions to understand their reasoning, and find common ground",
+    category: "Communication",
     difficulty: "medium",
-    explanation: "The Nile River is approximately 6,650 kilometers long and flows through 11 countries."
+    explanation: "Professional disagreement requires respect, evidence, and collaborative problem-solving."
   },
   {
     id: 12,
-    question: "Which African country is known for its coffee production?",
-    answer: "Ethiopia",
-    category: "Economy",
-    difficulty: "medium",
-    explanation: "Ethiopia is considered the birthplace of coffee and is a major coffee producer."
+    question: "You're mentoring a junior developer from a different cultural background. What's important to remember?",
+    answer: "Be patient, explain context, encourage questions, and respect different learning styles",
+    category: "Mentorship",
+    difficulty: "easy",
+    explanation: "Effective mentorship requires cultural sensitivity and adaptive teaching approaches."
   },
 
-  // Hard questions
+  // Advanced Technical & Strategic
   {
     id: 13,
-    question: "Which African country has the most official languages?",
-    answer: "South Africa",
-    category: "Language",
+    question: "You're designing a system that will serve users across Africa. What technical considerations are crucial?",
+    answer: "Low bandwidth optimization, offline capabilities, multi-language support, and mobile-first design",
+    category: "System Design",
     difficulty: "hard",
-    explanation: "South Africa has 11 official languages, including English, Afrikaans, and 9 indigenous languages."
+    explanation: "African markets require special consideration for connectivity, devices, and user needs."
   },
   {
     id: 14,
-    question: "What is the oldest university in the world located in Africa?",
-    answer: "University of Al Quaraouiyine",
-    category: "Education",
+    question: "Your startup wants to expand to African markets. What technical infrastructure decisions matter most?",
+    answer: "Local hosting, payment integration, regulatory compliance, and scalable architecture",
+    category: "Business Strategy",
     difficulty: "hard",
-    explanation: "Founded in 859 AD in Fez, Morocco, it's recognized by UNESCO and Guinness World Records."
+    explanation: "Market expansion requires understanding local technical and regulatory requirements."
   },
   {
     id: 15,
-    question: "Which African country has the most UNESCO World Heritage Sites?",
-    answer: "Morocco",
-    category: "Culture",
+    question: "You're building an AI product for African languages. What are the key challenges?",
+    answer: "Limited training data, language diversity, cultural context, and computational resources",
+    category: "AI/ML",
     difficulty: "hard",
-    explanation: "Morocco has 9 UNESCO World Heritage Sites, including the medinas of Fez and Marrakech."
-  },
-  {
-    id: 16,
-    question: "What is the only African country with Spanish as an official language?",
-    answer: "Equatorial Guinea",
-    category: "Language",
-    difficulty: "hard",
-    explanation: "Equatorial Guinea is the only African country where Spanish is an official language."
-  },
-  {
-    id: 17,
-    question: "Which African country has the highest GDP per capita?",
-    answer: "Seychelles",
-    category: "Economy",
-    difficulty: "hard",
-    explanation: "Seychelles has one of the highest GDP per capita in Africa due to its tourism and fishing industries."
-  },
-  {
-    id: 18,
-    question: "What is the largest lake in Africa?",
-    answer: "Lake Victoria",
-    category: "Geography",
-    difficulty: "hard",
-    explanation: "Lake Victoria is the largest lake in Africa and the second-largest freshwater lake in the world."
-  },
-  {
-    id: 19,
-    question: "Which African country has the most time zones?",
-    answer: "France (overseas territories)",
-    category: "Geography",
-    difficulty: "hard",
-    explanation: "France's overseas territories in Africa span 12 time zones, more than any other country."
-  },
-  {
-    id: 20,
-    question: "What is the only African country that borders both the Atlantic and Indian Oceans?",
-    answer: "South Africa",
-    category: "Geography",
-    difficulty: "hard",
-    explanation: "South Africa's coastline extends from the Atlantic Ocean in the west to the Indian Ocean in the east."
+    explanation: "AI for African languages requires addressing data scarcity and cultural nuances."
   }
 ];
 
 export const quizCategories = [
   "All",
-  "Geography",
-  "History",
-  "Culture",
-  "Language",
-  "Economy",
-  "Demographics",
-  "Education"
+  "Programming",
+  "System Design",
+  "Career",
+  "Cultural Intelligence",
+  "Networking",
+  "Communication",
+  "Leadership",
+  "Mentorship",
+  "Performance",
+  "Business Strategy",
+  "AI/ML"
 ];
 
 export const difficultyLevels = [
   { value: "all", label: "All Levels" },
-  { value: "easy", label: "Easy" },
-  { value: "medium", label: "Medium" },
-  { value: "hard", label: "Hard" }
+  { value: "easy", label: "Beginner" },
+  { value: "medium", label: "Intermediate" },
+  { value: "hard", label: "Advanced" }
 ];
+
+// Keep the old export for backward compatibility
+export const africanCountriesQuiz = techSkillsAssessment;

@@ -36,45 +36,41 @@ const Navigation = () => {
       }`}
     >
       <div className="flex items-center justify-between">
-        <div className="text-white font-bold text-xl">
+        <div className="text-white font-bold text-xl flex items-center gap-2">
          <h1>
-          <Link href="/" className="hover:text-gray-300 transition-colors"> MVP Starter Kit</Link>
+          <Link href="/" className="hover:text-gray-300 transition-colors flex items-center gap-2">
+            <span className="text-2xl">🕷️</span>
+            Ananse AI
+          </Link>
           </h1>
         </div>
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6">
           <a 
-          onClick={() => { router.push('signup');}}
-          className="text-white hover:text-gray-300 cursor-pointer transition-colors">
-            Sign up
-          </a>
-          <a 
-          onClick={() => { router.push('login');}}
-           className="text-white cursor-pointer hover:text-gray-300 transition-colors">
-            Login
-          </a>
-          <a 
           onClick={() => { router.push('/dashboard');}}
            className="text-white cursor-pointer hover:text-gray-300 transition-colors">
             Dashboard
           </a>
-          <a href="#process" className="text-white hover:text-gray-300 transition-colors">
-            Process
-          </a>
           <a 
           onClick={() => { router.push('/AImodel');}}
-            className="text-white hover:cursor-pointer hover:text-gray-300 transition-colors">
-            AI
+            className="text-white hover:cursor-pointer hover:text-gray-300 transition-colors flex items-center gap-1">
+            <span>🕷️</span>
+            Mentor
           </a>
           <a 
           onClick={() => { router.push('/quiz');}}
             className="text-white hover:cursor-pointer hover:text-gray-300 transition-colors">
-            Quiz
+            Skills
           </a>
           <a 
-          onClick={() => { router.push('/docs');}}
+          onClick={() => { router.push('/community');}}
             className="text-white hover:cursor-pointer hover:text-gray-300 transition-colors">
-            Docs
+            Community
+          </a>
+          <a 
+          onClick={() => { router.push('/stories');}}
+            className="text-white hover:cursor-pointer hover:text-gray-300 transition-colors">
+            Stories
           </a>
         </div>
 
@@ -114,49 +110,35 @@ const Navigation = () => {
       >
         <div className="flex flex-col space-y-4 p-6">
           <a
-            
-            onClick={() => { router.push('signup'); closeMenu();}}
-            className="text-white hover:text-gray-300 transition-colors text-lg py-2"
-          >
-            Signup
-          </a>
-          <a
-            onClick={() => { router.push('login'); closeMenu();}}
-            className="text-white hover:text-gray-300 transition-colors text-lg py-2"
-          >
-            Login
-          </a>
-          <a
-            href="#about"
             onClick={ ()=>{router.push('/dashboard'); closeMenu();}}
             className="text-white hover:text-gray-300 transition-colors text-lg py-2"
           >
             Dashboard
           </a>
           <a
-            href="#process"
-            onClick={closeMenu}
-            className="text-white hover:text-gray-300 transition-colors text-lg py-2"
-          >
-            Process
-          </a>
-          <a
             onClick={() => { router.push('/AImodel'); closeMenu();}}
-            className="text-white hover:text-gray-300 transition-colors text-lg py-2"
+            className="text-white hover:text-gray-300 transition-colors text-lg py-2 flex items-center gap-2"
           >
-            AI
+            <span>🕷️</span>
+            Mentor
           </a>
           <a
             onClick={() => { router.push('/quiz'); closeMenu();}}
             className="text-white hover:text-gray-300 transition-colors text-lg py-2"
           >
-            Quiz
+            Skills
           </a>
           <a
-            onClick={() => { router.push('/docs'); closeMenu();}}
+            onClick={() => { router.push('/community'); closeMenu();}}
             className="text-white hover:text-gray-300 transition-colors text-lg py-2"
           >
-            Docs
+            Community
+          </a>
+          <a
+            onClick={() => { router.push('/stories'); closeMenu();}}
+            className="text-white hover:text-gray-300 transition-colors text-lg py-2"
+          >
+            Stories
           </a>
         </div>
       </div>
